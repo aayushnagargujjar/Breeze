@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "305839343783",
+    "project_id": "loginsignup-aayush",
+    "storage_bucket": "loginsignup-aayush.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305839343783:android:c4e33f298ac9246c533382",
+        "android_client_info": {
+          "package_name": "com.example.loginsignup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwkv6yQ7jzfoFeOCF0HtJxjGnrgUMiSis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
