@@ -35,13 +35,23 @@ class Signup : AppCompatActivity() {
             val name = nam.text.toString()
             val pass = password.text.toString()
             val user = User(name, mail, pass)
+            val alreadyuser = findViewById<Button>(R.id.alreadyuser)
 
             database = FirebaseDatabase.getInstance().getReference("User")
             database.child(mail).setValue(user).addOnSuccessListener {
-
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
+                if (mail.isNotEmpty() && name.isNotEmpty() && pass.isNotEmpty()) {
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                    val intent=Intent(this,LoginActivity1::class.java)
+                    startActivity(intent)
+                }
+                else
+                    Toast.makeText(this, "name or mailid or password is empty", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
                 Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
+            }
+            alreadyuser.setOnClickListener {
+                val intent = Intent(this, LoginActivity1::class.java)
+                startActivity(intent)
             }
         }
     }

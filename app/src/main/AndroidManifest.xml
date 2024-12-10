@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Internet permission declaration -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Loginsignup"
         tools:targetApi="31">
+
+        <!-- Activities declaration -->
+        <activity
+            android:name=".AllNews"
+            android:exported="false" />
+        <activity
+            android:name=".Newsstart"
+            android:exported="false" />
         <activity
             android:name=".welcomeactivity"
             android:exported="false" />
@@ -21,16 +32,13 @@
         <activity
             android:name=".LoginActivity1"
             android:exported="false" />
-        <activity
-            android:name=".ui.login.LoginActivity1"
-            android:exported="false"
-            android:label="@string/title_activity_login1" />
+
+        <!-- Main activity declaration with launcher intent filter -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

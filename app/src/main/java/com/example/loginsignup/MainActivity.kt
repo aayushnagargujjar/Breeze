@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         lifecycleScope.launch{
-            delay(500)
+            delay(200)
 
         val intent =Intent(this@MainActivity,LoginActivity1::class.java)
         startActivity(intent)

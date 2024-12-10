@@ -1,12 +1,16 @@
 package com.example.loginsignup
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class welcomeactivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -26,5 +30,13 @@ class welcomeactivity : AppCompatActivity() {
         welcometext.text="welcome $name1"
         val nametext=findViewById<TextView>(R.id.name)
         nametext.text="your mail is $mail"
+
+        lifecycleScope.launch{
+            delay(200)
+
+            val intent = Intent(this@welcomeactivity,Newsstart::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

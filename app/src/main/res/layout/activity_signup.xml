@@ -5,74 +5,101 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/overallbackground"
     tools:context=".Signup">
 
-
+    <!-- Container Layout -->
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:background="@drawable/ic_launcher_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@drawable/overallbackground">
 
-
+        <!-- Logo Image -->
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="match_parent"
-            android:layout_height="201dp"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/logo_desc"
             app:srcCompat="@drawable/r" />
 
+        <!-- Name EditText -->
         <EditText
             android:id="@+id/name"
-            android:layout_width="300dp"
-            android:layout_height="68dp"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:drawableStart="@drawable/baseline_person_24"
-            android:hint=" name"
-            android:textColorHint="@color/yellow"
-            android:textSize="25sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:hint=" Name"
+            android:textColorHint="@color/red"
+            android:textSize="18sp"
+            android:background="@drawable/edit_text_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="16dp"/>
 
+        <!-- Email EditText -->
         <EditText
             android:id="@+id/gmail"
-            android:layout_width="300dp"
-            android:layout_height="73dp"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:drawableStart="@drawable/baseline_alternate_email_24"
-            android:hint=" mail_id"
-            android:textColorHint="@color/yellow"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:hint=" Email"
+            android:textColorHint="@color/red"
+            android:textSize="18sp"
+            android:background="@drawable/edit_text_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="16dp"/>
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="300dp"
-            android:layout_height="72dp"
-            android:layout_gravity="center"
-            android:hint="      password"
-            android:textColorHint="@color/yellow"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        <!-- Password InputLayout -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/baseline_person_24"
+            android:layout_marginBottom="32dp">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="     Password"
+                android:inputType="textPassword"
+                android:textColorHint="@color/red"
+                android:textSize="18sp"
+                android:background="@drawable/edit_text_background"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Signup Button -->
         <Button
             android:id="@+id/signuplogin"
-            android:layout_width="184dp"
-            android:layout_height="61dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:backgroundTint="@drawable/buttonbackground"
-            android:text="signup" />
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:text="Signup"
+            android:layout_marginBottom="16dp"/>
 
-
-
+        <!-- Already User Button -->
+        <Button
+            android:id="@+id/alreadyuser"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@android:color/white"
+            android:text="Already a user? Login" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
