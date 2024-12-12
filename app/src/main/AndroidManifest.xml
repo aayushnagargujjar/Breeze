@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Loginsignup"
         tools:targetApi="31">
         <activity
+            android:name=".Breezenews"
+            android:exported="false" />
+        <activity
             android:name=".AllNewsmain"
             android:exported="false" />
         <activity

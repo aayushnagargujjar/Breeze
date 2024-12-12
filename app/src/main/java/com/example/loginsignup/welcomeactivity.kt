@@ -32,7 +32,7 @@ class welcomeactivity : AppCompatActivity() {
         nametext.text="your mail is $mail"
 
         lifecycleScope.launch{
-            delay(200)
+            delay(1000)
 
             val intent = Intent(this@welcomeactivity,Newsstart::class.java)
             startActivity(intent)

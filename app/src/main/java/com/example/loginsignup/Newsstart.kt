@@ -49,8 +49,9 @@ class Newsstart : AppCompatActivity() {
         // Set OnItemClickListener to handle list item clicks
         listView.setOnItemClickListener { _, _, position, _ ->
             when (position) {
-                0 ->  { }
-                1 -> { Intent(this, Sportnews::class.java).also { startActivity(it) }}
+                0 ->  { val intent = Intent(this, Breezenews::class.java)
+                    startActivity(intent)}
+                1 -> { }
                 2 -> { /* Handle Entertainment */ }
                 3 -> { /* Handle Health */ }
                 4 -> { /* Handle Science */ }
