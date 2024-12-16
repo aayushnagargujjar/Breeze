@@ -15,6 +15,18 @@
         android:theme="@style/Theme.Loginsignup"
         tools:targetApi="31">
         <activity
+            android:name=".Bookmark"
+            android:exported="false" />
+        <activity
+            android:name=".example"
+            android:exported="false" />
+        <activity
+            android:name=".Webview"
+            android:exported="false" />
+        <activity
+            android:name=".Newsdetail"
+            android:exported="false" />
+        <activity
             android:name=".Breezenews"
             android:exported="false" />
         <activity
