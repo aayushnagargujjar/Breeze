@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/overallbackground"
+    android:background="@drawable/welcomepage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -11,19 +11,19 @@
     <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/circleImageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:background="@drawable/overallbackground"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/edit_text_background1"
         android:contentDescription="@string/app_name"
         android:src="@drawable/whatsapp_image_2024_12_07_at_21_19_14_cbe4c351"
         app:civ_border_color="#E9E6E6"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409"
+        app:layout_constraintVertical_bias="0.471"
         tools:ignore="MissingConstraints" />
 
     <pl.droidsonroids.gif.GifImageView
@@ -34,10 +34,10 @@
         android:src="@drawable/rocketanimation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591" />
+        app:layout_constraintVertical_bias="0.593" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

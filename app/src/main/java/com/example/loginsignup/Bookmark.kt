@@ -1,7 +1,9 @@
 package com.example.loginsignup
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +28,7 @@ class Bookmark : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_bookmark)
@@ -38,13 +41,22 @@ class Bookmark : AppCompatActivity() {
         }
 
         // Initialize RecyclerView
-        myRecyclerView = findViewById(R.id.recyclerview)
+        myRecyclerView = findViewById(R.id.recyclerview2)
         newsArrayList = arrayListOf()
         myRecyclerView.layoutManager = LinearLayoutManager(this)
         myAdapterBookmark = MyAdapterBookmark(newsArrayList, this) { position ->
             // Handle item click
             val clickedBookmark = newsArrayList[position]
             Toast.makeText(this, "Clicked: ${clickedBookmark.title}", Toast.LENGTH_SHORT).show()
+            val intent= Intent(this,Newsdetail::class.java).apply {
+                putExtra("title",clickedBookmark.title)
+                putExtra("description",clickedBookmark.description)
+                putExtra("image",clickedBookmark.ImageUrl)
+                putExtra("url",clickedBookmark.Newsurl)
+                putExtra("position",position)
+                putExtra("like","delete")
+            }
+            startActivity(intent)
         }
         myRecyclerView.adapter = myAdapterBookmark
 
@@ -58,40 +70,42 @@ class Bookmark : AppCompatActivity() {
         coroutineScope.launch {
             try {
                 // Fetch Firestore data
-                val result = db.collection("User")
-                    .document("userid") // Use the correct userId
+                val userid= FirebaseAuth.getInstance().currentUser?.uid?.replace(".",",")
+            db.collection("User")
+                    .document("userid")
                     .collection("data")
-                    .get()
-                    .await()
+                    .get().addOnSuccessListener {result->
 
-                // Clear the list to avoid duplication
-                newsArrayList.clear()
+                        // Clear the list to avoid duplication
+                        newsArrayList.clear()
 
-                // Map Firestore documents to book objects and add to the list
-                for (document in result.documents) {
-                    val news = book().apply {
-                        title = document.getString("title") ?: "No Title"
-                        Newsurl = document.getString("url") ?: "No URL"
-                        ImageUrl = document.getString("image") ?: "No Image URL"
-                        description = document.getString("description") ?: "No Description"
+                        //  Map Firestore documents to book objects and add to the list
+                        for (document in result.documents) {
+                            val news = book().apply {
+                                title = document.getString("title") ?: "No Title"
+                 Newsurl = document.getString("url") ?: "No URL"
+                                ImageUrl = document.getString("image") ?: "No Image URL"
+                                description = document.getString("description") ?: "No Description"
+                            }
+                            newsArrayList.add(news)
+                        }
+
+                        // Notify the adapter that the data set has changed
+           myAdapterBookmark.notifyDataSetChanged()
+
+                        // Success message
+                        Toast.makeText(this@Bookmark, "Bookmarks loaded successfully", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener{
+                        Toast.makeText(this@Bookmark, "Failed to load bookmarks", Toast.LENGTH_SHORT).show()
                     }
-                    newsArrayList.add(news)
-                }
 
-                // Notify the adapter that the data set has changed
-                myAdapterBookmark.notifyDataSetChanged()
 
-                // Success message
-                Toast.makeText(this@Bookmark, "Bookmarks loaded successfully", Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
+            }
+            catch (e: Exception) {
                 // Error message
                 Toast.makeText(this@Bookmark, "Failed to load bookmarks: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // Cleanup resources if necessary
-    }
 }
