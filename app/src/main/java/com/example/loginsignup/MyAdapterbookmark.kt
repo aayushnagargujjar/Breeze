@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.loginsignup.MyAdapterNews.OnItemClickListener
 
 class MyAdapterBookmark(
-    private var newsArrayList: ArrayList<book>, // Dataset
-    private val context: Context,               // Context
-    private val onItemClick: (Int) -> Unit      // Lambda for item clicks
+    private var newsArrayList: ArrayList<book>,
+    private val context: Context,
+    private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<MyAdapterBookmark.MyViewHolder>() {
 
     // ViewHolder for RecyclerView
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View, ) : RecyclerView.ViewHolder(itemView) {
         val titleImage: ImageView = itemView.findViewById(R.id.headlineimageview)
         val headline: TextView = itemView.findViewById(R.id.newsheadline)
     }
@@ -26,7 +27,7 @@ class MyAdapterBookmark(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.recyclearviewdesign, parent, false)
-        return MyViewHolder(itemView)
+        return MyViewHolder(itemView, )
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

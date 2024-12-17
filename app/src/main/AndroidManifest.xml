@@ -37,7 +37,8 @@
             android:exported="false" /> <!-- Activities declaration -->
         <activity
             android:name=".AllNews"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Newsstart"
             android:exported="false" />

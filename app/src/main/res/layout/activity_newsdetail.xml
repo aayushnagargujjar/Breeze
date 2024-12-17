@@ -3,105 +3,118 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/overallbackground"
+    android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Newsdetail">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/beezehead" />
-
-    <ImageView
         android:id="@+id/newsimage"
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/whatsapp_image_2024_12_07_at_21_19_14_cbe4c351"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/whatsapp_image_2024_12_07_at_21_19_14_cbe4c351" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="410dp"
+        android:layout_height="500dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="50dp"
+
+        app:layout_constraintTop_toBottomOf="@id/newsimage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newsimage"
-        app:layout_constraintBottom_toTopOf="@+id/Webviewbutton"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
+
             <TextView
                 android:id="@+id/newstitle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp"
-                android:background="@color/black"
-
-                android:text="  News tittle"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:layout_height="wrap_content"
+                android:text="Crypto investors should be prepared to lose all their money, BOE governor says"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/newsContent"
+                android:id="@+id/newsDate"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="match_parent"
-                android:padding="16dp"
-                android:text="Sample news content goes here. You can replace this text with actual news content dynamically."
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-        </LinearLayout>
-    </ScrollView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Sunday, 9 May 2021"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/Webviewbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@android:color/black"
-        android:text="READ FULL NEWS"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollView2"
-        app:layout_constraintBottom_toBottomOf="parent" />
+            <TextView
+                android:id="@+id/newsAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Published by Ryan Browne"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/newsContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:text="LONDON - Cryptocurrencies 'have no intrinsic value' and people who invest in them should be prepared to lose all their money, Bank of England Governor Andrew Bailey said. Digital currencies like bitcoin, ether and even dogecoin have been on a tear this year, reminding some investors of the 2017 crypto bubble in which bitcoin blasted toward $20,000, only to sink as low as $3,122 a year later. Asked at a press conference Thursday about the rising value of cryptocurrencies, Bailey said they have no intrinsic value. That doesn't mean people don't put value on them, because they can have extrinsic value. But they have no intrinsic value."
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/Webviewbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@android:color/black"
+                android:text=" READ FULL NEWS"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="120dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/bookmark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="bookmark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="123dp" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/bookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bookmark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.loginsignup
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,17 +24,18 @@ class welcomeactivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val name1=intent.getStringExtra("name")
-        val mail=intent.getStringExtra("mail")
-
+        var name1=intent.getStringExtra("name")
+        var mail=intent.getStringExtra("mail")
+             if (name1==null&&mail==null){
+                 name1="User"
+                 mail="Googleuser@gmail.com"
+             }
         val welcometext=findViewById<TextView>(R.id.welcome)
         welcometext.text="welcome $name1"
         val nametext=findViewById<TextView>(R.id.name)
         nametext.text="your mail is $mail"
-
-        lifecycleScope.launch{
-            delay(1000)
-
+        val btn=findViewById<Button>(R.id.button4)
+          btn.setOnClickListener {
             val intent = Intent(this@welcomeactivity,Newsstart::class.java)
             intent.putExtra("mail",mail)
             startActivity(intent)

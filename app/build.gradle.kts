@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.loginsignup"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -72,6 +72,7 @@ dependencies {
         implementation (libs.glide)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.car.ui.lib)
     annotationProcessor (libs.compiler)
     //for gif
     implementation (libs.android.gif.drawable)
