@@ -35,6 +35,7 @@ class welcomeactivity : AppCompatActivity() {
             delay(1000)
 
             val intent = Intent(this@welcomeactivity,Newsstart::class.java)
+            intent.putExtra("mail",mail)
             startActivity(intent)
             finish()
         }

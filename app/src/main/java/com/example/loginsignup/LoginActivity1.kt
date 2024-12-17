@@ -38,7 +38,7 @@ class LoginActivity1 : AppCompatActivity() {
         }
 
         login.setOnClickListener {
-            val userid = mailid.text.toString()
+            val userid = mailid.text.toString().replace(".", ",")
             val pass = password.text.toString()
             if (userid.isNotEmpty() && pass.isNotEmpty()) {
                 readdata(userid, pass)

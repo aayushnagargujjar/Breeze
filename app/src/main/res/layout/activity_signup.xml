@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@drawable/overallbackground"
+    android:background="@drawable/edit_text_background"
     tools:context=".Signup">
 
     <!-- Container Layout -->
@@ -20,16 +20,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
         android:padding="16dp"
-        android:background="@drawable/overallbackground">
+        android:background="@drawable/loginback">
 
         <!-- Logo Image -->
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="250dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/logo_desc"
-            app:srcCompat="@drawable/r" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="#F8F5F5"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/whatsapp_image_2024_12_07_at_21_19_14_cbe4c351"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.058"
+            tools:ignore="MissingConstraints" />
 
         <!-- Name EditText -->
         <EditText
@@ -37,7 +45,19 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:drawableStart="@drawable/baseline_person_24"
-            android:hint=" Name"
+            android:hint="   Name"
+            android:textColorHint="@color/red"
+            android:textSize="18sp"
+            android:background="@drawable/edit_text_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="16dp"/>
+        <EditText
+            android:id="@+id/uniqueid"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:drawableStart="@android:drawable/ic_menu_compass"
+            android:hint=" Unique Id"
             android:textColorHint="@color/red"
             android:textSize="18sp"
             android:background="@drawable/edit_text_background"
@@ -51,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:drawableStart="@drawable/baseline_alternate_email_24"
-            android:hint=" Email"
+            android:hint="   Email"
             android:textColorHint="@color/red"
             android:textSize="18sp"
             android:background="@drawable/edit_text_background"

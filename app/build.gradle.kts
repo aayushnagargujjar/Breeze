@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
 }
 
+
 android {
     namespace = "com.example.loginsignup"
     compileSdk = 35
@@ -69,7 +70,11 @@ dependencies {
         implementation (libs.okhttp)
      //for glide
         implementation (libs.glide)
-         annotationProcessor (libs.compiler)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth.ktx)
+    annotationProcessor (libs.compiler)
+    //for gif
+    implementation (libs.android.gif.drawable)
 }
 
 

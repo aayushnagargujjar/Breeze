@@ -29,17 +29,19 @@ class Signup : AppCompatActivity() {
         val nam = findViewById<TextView>(R.id.name)
         val gmail = findViewById<TextView>(R.id.gmail)
         val password = findViewById<TextView>(R.id.password)
+        val unique = findViewById<TextView>(R.id.uniqueid)
 
         signuplogin1.setOnClickListener {
-            val mail = gmail.text.toString()
+            val mail = gmail.text.toString().replace(".", ",")
             val name = nam.text.toString()
             val pass = password.text.toString()
-            val user = User(name, mail, pass)
+            val uniqueid = unique.text.toString()
+            val user = User(name, mail, pass,uniqueid)
             val alreadyuser = findViewById<Button>(R.id.alreadyuser)
 
             database = FirebaseDatabase.getInstance().getReference("User")
             database.child(mail).setValue(user).addOnSuccessListener {
-                if (mail.isNotEmpty() && name.isNotEmpty() && pass.isNotEmpty()) {
+                if (mail.isNotEmpty() && name.isNotEmpty() && pass.isNotEmpty() && uniqueid.isNotEmpty()) {
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
                     val intent=Intent(this,LoginActivity1::class.java)
                     startActivity(intent)
@@ -56,7 +58,12 @@ class Signup : AppCompatActivity() {
         }
     }
 
-    data class User(val name: String, val mail: String, val pass: String)
+    data class User(
+        val name: String,
+        val mail: String,
+        val pass: String,
+        val unique: String
+    )
 }
 
 

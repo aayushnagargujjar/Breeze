@@ -25,13 +25,13 @@ class Newsstart : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+          val mail=intent.getStringExtra("mail")
         // Data for ListView
-        val names = arrayOf("Allnews", "Sports", "Entertainment", "Health", "Science")
+        val names = arrayOf("Allnews", "Sports", "politcs", "Bookmark", "Science")
         val imageIds = intArrayOf(
             R.drawable.whatsapp_image_2024_12_07_at_21_19_14_cbe4c351,
             R.drawable.sport,
-            R.drawable.entertainment,
+            R.drawable.politics,
             R.drawable.health,
             R.drawable.science
         )
@@ -50,10 +50,26 @@ class Newsstart : AppCompatActivity() {
         listView.setOnItemClickListener { _, _, position, _ ->
             when (position) {
                 0 ->  { val intent = Intent(this, Breezenews::class.java)
+                    intent.putExtra("topic", "General")
+                    intent.putExtra("mail",mail)
                     startActivity(intent)}
-                1 -> { }
-                2 -> { /* Handle Entertainment */ }
-                3 -> { /* Handle Health */ }
+                1 -> {
+                    val intent = Intent(this, Breezenews::class.java)
+                    intent.putExtra("topic", "Sports")
+                    intent.putExtra("mail",mail)
+                    startActivity(intent)
+                }
+                2 -> { /* Handle Entertainment */
+                val intent = Intent(this, Breezenews::class.java)
+                    intent.putExtra("topic", "Politics")
+                    intent.putExtra("mail",mail)
+                    startActivity(intent)
+                }
+                3 -> { /* Handle Health */
+                  val intent = Intent(this, Bookmark::class.java)
+                    intent.putExtra("mail",mail)
+                         startActivity(intent)
+                }
                 4 -> { /* Handle Science */ }
             }
         }

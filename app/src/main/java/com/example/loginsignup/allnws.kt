@@ -1,6 +1,7 @@
 package com.example.apifetch
 
 import com.example.loginsignup.AllNews
+import com.example.loginsignup.Breezenews
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.GET
@@ -14,7 +15,8 @@ interface ApiInterface {
     )
     @GET("/v2/trendings")
     fun getNews(
-        @Query("topic") topic: String= "Sports",
-        @Query("language") language: String = "en"
+        @Query("topic") topic: String,
+        @Query("language") language: String
+
     ): Call<AllNews>
 }
