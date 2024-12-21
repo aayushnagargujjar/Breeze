@@ -3,6 +3,7 @@ package com.example.loginsignup
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.apifetch.ApiInterface
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class Breezenews : AppCompatActivity() {
     lateinit var myRecyclerView: RecyclerView
     lateinit var newsArrayList: ArrayList<News>
+    private lateinit var Refresh: SwipeRefreshLayout
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +36,9 @@ class Breezenews : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-      val mail=intent.getStringExtra("mail")
+
+        Refresh = findViewById(R.id.swipeRefreshLayout)
+        val mail = intent.getStringExtra("mail")
         myRecyclerView = findViewById(R.id.recyclerview)
         newsArrayList = arrayListOf()
         myRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -47,24 +52,31 @@ class Breezenews : AppCompatActivity() {
                     putExtra("description", newsArrayList[position].description)
                     putExtra("image", newsArrayList[position].ImageUrl)
                     putExtra("url", newsArrayList[position].Newsurl)
+                    putExtra("date", newsArrayList[position].date)
+                    putExtra("author", newsArrayList[position].author)
+
                 }
                 startActivity(intent)
             }
         })
 
         fetchNews()
+        Refresh.setOnRefreshListener {
+            fetchNews()
+        }
     }
 
     private fun fetchNews() {
+        Refresh.isRefreshing = true
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://news-api14.p.rapidapi.com/")  // Make sure baseUrl is correct
+            .baseUrl("https://news-api14.p.rapidapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val service = retrofit.create(ApiInterface::class.java)
         val topics = listOf("General", "Sports", "Technology")
         val topic = intent.getStringExtra("topic").toString()
-        val call = service.getNews(topic,"en")
+        val call = service.getNews(topic, "en")
 
         call.enqueue(object : Callback<AllNews> {
             @SuppressLint("NotifyDataSetChanged")
@@ -74,12 +86,15 @@ class Breezenews : AppCompatActivity() {
                     val dataList = responseBody?.data
 
                     if (dataList != null) {
+                        newsArrayList.clear() // Clear the list before adding new data
                         for (item in dataList) {
                             val news = News().apply {
-                                title = item.title ?: "No Title"
-                                ImageUrl = item.thumbnail ?: "No Image URL"
-                                description = item.excerpt ?: "No Description"
-                                Newsurl = item.url ?: "No URL"
+                                title = item.title
+                                ImageUrl = item.thumbnail
+                                description = item.excerpt
+                                Newsurl = item.url
+                                author = item.authors.toString()
+                                date = item.date.substring(0, 10) ?: "No Date"
                             }
                             newsArrayList.add(news)
                         }
@@ -90,11 +105,17 @@ class Breezenews : AppCompatActivity() {
                 } else {
                     Log.e("Error", "Response not successful: ${response.code()}")
                 }
+                Refresh.isRefreshing = false
             }
 
             override fun onFailure(call: Call<AllNews>, t: Throwable) {
                 Log.e("Error", "Failed to fetch news: ${t.message}")
+
+                Refresh.isRefreshing = false
             }
         })
+        Handler().postDelayed({
+            Refresh.isRefreshing = false
+        }, 2000)
     }
 }

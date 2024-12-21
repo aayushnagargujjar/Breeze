@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/choosenewsback"
+    android:background="@drawable/background5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Newsstart">
@@ -12,13 +12,13 @@
         android:id="@+id/textView"
         android:layout_width="400dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:text="     Choose your News type"
-        android:background="@drawable/choosenewsback"
-        android:textColor="@color/lightblue"
+        android:layout_marginTop="74dp"
+        android:text="    Choose your News type    "
+        android:textColor="#0B0B0B"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

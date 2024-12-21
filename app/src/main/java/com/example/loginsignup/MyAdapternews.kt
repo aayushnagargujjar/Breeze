@@ -44,6 +44,7 @@ class MyAdapterNews(private val newsArrayList: ArrayList<News>, private val cont
             .centerCrop()
             .into(holder.titleImage)
         holder.headline.text = currentItem.title
+
     }
 
     fun setItemClickListener(listener: OnItemClickListener) {

@@ -2,6 +2,7 @@ package com.example.loginsignup
 
 import android.os.Bundle
 import android.webkit.WebView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,6 +22,9 @@ class Webview : AppCompatActivity() {
         if (url != null) {
             val webView = findViewById<WebView>(R.id.webview)
             webView.loadUrl(url)
+        }
+        else{
+            Toast.makeText(this, "No URL found", Toast.LENGTH_SHORT).show()
         }
     }
 }
