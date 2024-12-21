@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "305839343783",
+    "firebase_url": "https://loginsignup-aayush-default-rtdb.firebaseio.com",
     "project_id": "loginsignup-aayush",
     "storage_bucket": "loginsignup-aayush.firebasestorage.app"
   },

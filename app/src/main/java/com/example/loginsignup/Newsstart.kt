@@ -25,15 +25,16 @@ class Newsstart : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-          val mail=intent.getStringExtra("mail")
+        val mail = intent.getStringExtra("mail")
         // Data for ListView
-        val names = arrayOf("Allnews", "Sports", "politcs", "Bookmark", "Science")
+        val names = arrayOf("Allnews", "Bookmark", "Sports", "politcs")
         val imageIds = intArrayOf(
             R.drawable.whatsapp_image_2024_12_07_at_21_19_14_cbe4c351,
+            R.drawable.bookmark,
             R.drawable.sport,
-            R.drawable.politics,
-            R.drawable.health,
-            R.drawable.science
+            R.drawable.politics
+
+
         )
 
         // Populate ArrayList with Usernews objects
@@ -49,28 +50,34 @@ class Newsstart : AppCompatActivity() {
         // Set OnItemClickListener to handle list item clicks
         listView.setOnItemClickListener { _, _, position, _ ->
             when (position) {
-                0 ->  { val intent = Intent(this, Breezenews::class.java)
+                0 -> {
+                    val intent = Intent(this, Breezenews::class.java)
                     intent.putExtra("topic", "General")
-                    intent.putExtra("mail",mail)
-                    startActivity(intent)}
+                    intent.putExtra("mail", mail)
+                    startActivity(intent)
+                }
+
                 1 -> {
+                    val intent = Intent(this, Bookmark::class.java)
+                    intent.putExtra("mail", mail)
+                    startActivity(intent)
+
+                }
+
+                2 -> {
                     val intent = Intent(this, Breezenews::class.java)
                     intent.putExtra("topic", "Sports")
-                    intent.putExtra("mail",mail)
+                    intent.putExtra("mail", mail)
                     startActivity(intent)
                 }
-                2 -> { /* Handle Entertainment */
-                val intent = Intent(this, Breezenews::class.java)
+
+                3 -> {
+                    val intent = Intent(this, Breezenews::class.java)
                     intent.putExtra("topic", "Politics")
-                    intent.putExtra("mail",mail)
+                    intent.putExtra("mail", mail)
                     startActivity(intent)
                 }
-                3 -> { /* Handle Health */
-                  val intent = Intent(this, Bookmark::class.java)
-                    intent.putExtra("mail",mail)
-                         startActivity(intent)
-                }
-                4 -> { /* Handle Science */ }
+
             }
         }
     }

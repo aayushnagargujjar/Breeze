@@ -1,71 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:background="@drawable/nespapaper2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".welcomeactiv1ity">
+    android:id="@+id/main"
+    android:background="@drawable/background5"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gifImageView"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
+    <TextView
+        android:id="@+id/signup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:text="Sign up"
+        android:textSize="34sp"
 
-        android:layout_marginTop="12dp"
-        android:baselineAligned="false"
-        android:src="@drawable/gif1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/signup_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Create your account"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.974">
+        app:layout_constraintTop_toBottomOf="@id/signup_title" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/welcome"
-                android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:text="TextView"
-                android:textSize="20dp" />
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/edit_text_background1"
+        android:drawableStart="@drawable/baseline_person_24"
+        android:hint="   Name"
+        android:padding="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColorHint="@color/red"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup_subtitle"
+        app:layout_constraintWidth_percent="0.8" />
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:text="TextView"
-                android:textSize="20dp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    <EditText
+        android:id="@+id/gmail"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edit_text_background1"
+        android:drawableStart="@drawable/baseline_alternate_email_24"
+        android:hint="   Email"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColorHint="@color/red"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintWidth_percent="0.8" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/signuplogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:backgroundTint="@color/grey"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintWidth_percent="0.8"
+        tools:layout_editor_absoluteY="523dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <!-- Already User Button -->
+    <TextView
+        android:id="@+id/login_prompt"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:text="News is here"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Already have an account? Login"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signuplogin" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="@+id/gmail"
+        app:layout_constraintStart_toStartOf="@+id/gmail"
+        app:startIconDrawable="@drawable/baseline_person_24"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="434dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/edit_text_background1"
+            android:hint="   Password"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:paddingEnd="160dp"
+            android:textColorHint="@color/red"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/alreadyuser"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="76dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text=" Login"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signuplogin" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/logo"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@color/white"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/whatsapp_image_2024_12_07_at_21_22_25_29ce7eae"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintVertical_bias="0.102"
+        tools:ignore="MissingConstraints" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout >

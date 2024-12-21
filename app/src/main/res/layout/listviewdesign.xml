@@ -5,9 +5,10 @@
     xmlns:circle="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="170dp"
     android:padding="16dp"
-    android:background="#48A2B8"
+
+
     >
 
     <androidx.cardview.widget.CardView
@@ -26,11 +27,11 @@
             android:id="@+id/profile_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="#48A2B8"
+
             android:contentDescription="@string/app_name"
             android:src="@drawable/whatsapp_image_2024_12_07_at_21_19_14_cbe4c351"
             app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp"/>
+            app:civ_border_width="2dp" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -48,6 +49,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/card_view"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.51" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

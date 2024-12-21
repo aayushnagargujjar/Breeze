@@ -7,63 +7,83 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class Signup : AppCompatActivity() {
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
         val signuplogin1 = findViewById<Button>(R.id.signuplogin)
         val nam = findViewById<TextView>(R.id.name)
         val gmail = findViewById<TextView>(R.id.gmail)
         val password = findViewById<TextView>(R.id.password)
-        val unique = findViewById<TextView>(R.id.uniqueid)
+        val alreadyuser = findViewById<Button>(R.id.alreadyuser)
+        alreadyuser.setOnClickListener {
+            val intent = Intent(this, LoginActivity1::class.java)
+            startActivity(intent)
+        }
 
         signuplogin1.setOnClickListener {
-            val mail = gmail.text.toString().replace(".", ",")
-            val name = nam.text.toString()
-            val pass = password.text.toString()
-            val uniqueid = unique.text.toString()
-            val user = User(name, mail, pass,uniqueid)
-            val alreadyuser = findViewById<Button>(R.id.alreadyuser)
+            val mail = gmail.text.toString().trim()
+            val name = nam.text.toString().trim()
+            val pass = password.text.toString().trim()
 
-            database = FirebaseDatabase.getInstance().getReference("User")
-            database.child(mail).setValue(user).addOnSuccessListener {
-                if (mail.isNotEmpty() && name.isNotEmpty() && pass.isNotEmpty() && uniqueid.isNotEmpty()) {
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                    val intent=Intent(this,LoginActivity1::class.java)
-                    startActivity(intent)
-                }
-                else
-                    Toast.makeText(this, "name or mailid or password is empty", Toast.LENGTH_SHORT).show()
-                }.addOnFailureListener {
-                Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
-            }
-            alreadyuser.setOnClickListener {
-                val intent = Intent(this, LoginActivity1::class.java)
-                startActivity(intent)
+            // Ensure fields are not empty
+            if (mail.isNotEmpty() && name.isNotEmpty() && pass.isNotEmpty()) {
+                createAccount(mail, pass, name)
+            } else {
+                Toast.makeText(this, "Name, Email, or Password is empty", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    // Function to create user with Firebase Authentication
+    private fun createAccount(email: String, password: String, name: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // User created successfully, now store additional user info in Realtime Database
+                    val user = User(name, email, password)
+                    storeUserInDatabase(user)
+                } else {
+                    // If sign up fails, display a message to the user
+                    Toast.makeText(this, "Authentication Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    // Store user data in Firebase Realtime Database
+    private fun storeUserInDatabase(user: User) {
+        database = FirebaseDatabase.getInstance().getReference("User")
+
+        // Using email as the unique identifier (replace "." with ",")
+        val userEmail = user.mail.replace(".", ",")
+        database.child(userEmail).setValue(user).addOnSuccessListener {
+            Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()
+
+            // Redirect to login page
+            val intent = Intent(this, LoginActivity1::class.java)
+            startActivity(intent)
+
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed to store user data", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // User data class to store user information
     data class User(
         val name: String,
         val mail: String,
-        val pass: String,
-        val unique: String
+        val pass: String
     )
 }
-
-

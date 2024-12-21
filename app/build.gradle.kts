@@ -73,9 +73,22 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.car.ui.lib)
+    implementation(libs.androidx.junit.ktx)
+    implementation(libs.androidx.monitor)
+    androidTestImplementation(libs.junit.junit)
+    androidTestImplementation(libs.junit.junit)
+    androidTestImplementation(libs.junit.junit)
     annotationProcessor (libs.compiler)
     //for gif
     implementation (libs.android.gif.drawable)
+
+    //for refresh
+     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    //heart
+    implementation ("androidx.appcompat:appcompat:1.3.1")
+    implementation ("com.google.android.material:material:1.4.0")
+    //
+     testImplementation ("junit:junit:4.13.2")
 }
 
 
