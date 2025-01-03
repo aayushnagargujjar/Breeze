@@ -1,9 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.google.gms.google.services)
+    id("com.android.application")
+    id("kotlin-android")
+    id("com.google.gms.google-services")
 }
-
 
 android {
     namespace = "com.example.loginsignup"
@@ -51,46 +50,42 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:20.0.0")
+    implementation("com.google.android.gms:play-services-base:18.0.1")
+
     // Firebase Libraries
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore.ktx)
-
-
+    implementation(libs.firebase.auth.ktx)
 
     // CircleImageView Library (Explicitly Added Dependency)
     implementation(libs.circleimageview)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    // retrofit gson
 
-        implementation (libs.kotlinx.coroutines.core)
-        implementation (libs.kotlinx.coroutines.android)
-        implementation (libs.retrofit)
-        implementation (libs.converter.gson)
-        implementation (libs.okhttp)
-     //for glide
-        implementation (libs.glide)
-    implementation(libs.firebase.firestore)
-    implementation(libs.firebase.auth.ktx)
-    implementation(libs.car.ui.lib)
+    // Retrofit and Gson for API requests
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+
+    // Glide for image loading
+    implementation(libs.glide)
+
+    // Testing Libraries
     implementation(libs.androidx.junit.ktx)
     implementation(libs.androidx.monitor)
     androidTestImplementation(libs.junit.junit)
-    androidTestImplementation(libs.junit.junit)
-    androidTestImplementation(libs.junit.junit)
-    annotationProcessor (libs.compiler)
-    //for gif
-    implementation (libs.android.gif.drawable)
+    annotationProcessor(libs.compiler)
 
-    //for refresh
-     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    //heart
-    implementation ("androidx.appcompat:appcompat:1.3.1")
-    implementation ("com.google.android.material:material:1.4.0")
-    //
-     testImplementation ("junit:junit:4.13.2")
+    // Additional Libraries
+    implementation(libs.android.gif.drawable) // For GIF support
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0") // SwipeRefreshLayout
+    implementation("androidx.appcompat:appcompat:1.3.1") // AppCompat
+    implementation("com.google.android.material:material:1.4.0") // Material Components
+    testImplementation("junit:junit:4.13.2")
+    implementation("androidx.recyclerview:recyclerview:1.2.1") // RecyclerView
 }
 
-
-
-
+// Ensure this is at the bottom of the file
+apply(plugin = "com.google.gms.google-services")

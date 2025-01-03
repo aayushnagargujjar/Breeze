@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/beezehead" />
+        app:srcCompat="@drawable/whatsapp_image_2024_12_07_at_21_19_14_cbe4c351" />
 
     <WebView
         android:id="@+id/webview"

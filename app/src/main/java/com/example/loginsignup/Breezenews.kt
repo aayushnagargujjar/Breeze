@@ -5,14 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
+import android.view.View
+import android.widget.ImageButton
+import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.apifetch.ApiInterface
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,30 +22,69 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Breezenews : AppCompatActivity() {
-    lateinit var myRecyclerView: RecyclerView
-    lateinit var newsArrayList: ArrayList<News>
-    private lateinit var Refresh: SwipeRefreshLayout
-
-    @SuppressLint("MissingInflatedId")
+    private lateinit var myRecyclerView: RecyclerView
+    private lateinit var newsArrayList: ArrayList<News>
+    private lateinit var myRecyclerViewH: RecyclerView
+    private lateinit var refresh: SwipeRefreshLayout
+    private lateinit var searchView: SearchView
+    private lateinit var topicList: ArrayList<Topic>
+    private lateinit var topicRecyclerView: RecyclerView
+    private lateinit var topicAdapter: TopicAdapter
+    private lateinit var switchbookmark: Switch
+    @SuppressLint("MissingInflatedId", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_breezenews)
-
-        // Set padding for system bars (edge-to-edge)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        Refresh = findViewById(R.id.swipeRefreshLayout)
-        val mail = intent.getStringExtra("mail")
+        val profilebtn = findViewById<ImageButton>(R.id.Profile)
+        refresh = findViewById(R.id.swipeRefreshLayout)
         myRecyclerView = findViewById(R.id.recyclerview)
+        myRecyclerViewH = findViewById(R.id.recyclerviewhorizontal)
+        searchView = findViewById(R.id.searchView)
+        topicRecyclerView = findViewById(R.id.topicRecyclerView)
+        switchbookmark = findViewById(R.id.switch1)
+
         newsArrayList = arrayListOf()
+        topicList = getSupportedTopics() // Initialize topicList as an ArrayList
+
+        topicRecyclerView.layoutManager = LinearLayoutManager(this)
         myRecyclerView.layoutManager = LinearLayoutManager(this)
+        myRecyclerViewH.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         val myAdapterNews = MyAdapterNews(newsArrayList, this)
+        val myAdapterNewsH = MyAdapterNewsH(newsArrayList, this)
+        topicAdapter = TopicAdapter(topicList, this)
+
         myRecyclerView.adapter = myAdapterNews
+        myRecyclerViewH.adapter = myAdapterNewsH
+        topicRecyclerView.adapter = topicAdapter
+
+        // Initially set the RecyclerView for topics to GONE
+        topicRecyclerView.visibility = View.GONE
+
+        topicAdapter.setItemClickListener(object : TopicAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val intent = Intent(this@Breezenews, Breezenews::class.java).apply {
+                    putExtra("topic", topicList[position].name)
+                }
+                startActivity(intent)
+            }
+        })
+        profilebtn.setOnClickListener {
+           val  auth =FirebaseAuth.getInstance()
+            val email =auth.currentUser?.email
+            val intent = Intent(this@Breezenews, WelcomeActivity::class.java)
+                .putExtra("name", intent.getStringExtra("name"))
+                .putExtra("mail", email)
+                .putExtra("pass", intent.getStringExtra("pass"))
+            startActivity(intent)
+        }
+        switchbookmark.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+              val intent = Intent(this@Breezenews, Bookmark::class.java)
+                startActivity(intent)
+            } else {
+
+            }}
 
         myAdapterNews.setItemClickListener(object : MyAdapterNews.OnItemClickListener {
             override fun onItemClick(position: Int) {
@@ -54,28 +95,74 @@ class Breezenews : AppCompatActivity() {
                     putExtra("url", newsArrayList[position].Newsurl)
                     putExtra("date", newsArrayList[position].date)
                     putExtra("author", newsArrayList[position].author)
-
                 }
                 startActivity(intent)
             }
         })
 
+        myAdapterNewsH.setItemClickListener(object : MyAdapterNewsH.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val intent = Intent(this@Breezenews, Newsdetail::class.java).apply {
+                    putExtra("title", newsArrayList[position].title)
+                    putExtra("description", newsArrayList[position].description)
+                    putExtra("image", newsArrayList[position].ImageUrl)
+                    putExtra("url", newsArrayList[position].Newsurl)
+                    putExtra("date", newsArrayList[position].date)
+                    putExtra("author", newsArrayList[position].author)
+                }
+                startActivity(intent)
+            }
+        })
+
+        searchView.setOnSearchClickListener {
+            topicRecyclerView.visibility = View.VISIBLE
+        }
+
+        searchView.setOnCloseListener {
+            topicRecyclerView.visibility = View.GONE
+            false
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Do nothing
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filteredList = filter(topicList, newText)
+                topicAdapter.updateList(filteredList)
+                return true
+            }
+        })
+
         fetchNews()
-        Refresh.setOnRefreshListener {
+        refresh.setOnRefreshListener {
             fetchNews()
         }
     }
 
+    private fun filter(list: ArrayList<Topic>, query: String?): ArrayList<Topic> {
+        val filteredList = arrayListOf<Topic>()
+        if (query != null) {
+            for (item in list) {
+                if (item.name.contains(query, true) || item.subtopics.any { it.name.contains(query, true) }) {
+                    filteredList.add(item)
+                }
+            }
+        }
+        return filteredList
+    }
+
     private fun fetchNews() {
-        Refresh.isRefreshing = true
+        refresh.isRefreshing = true
         val retrofit = Retrofit.Builder()
             .baseUrl("https://news-api14.p.rapidapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val service = retrofit.create(ApiInterface::class.java)
-        val topics = listOf("General", "Sports", "Technology")
-        val topic = intent.getStringExtra("topic").toString()
+        val topic = intent.getStringExtra("topic") ?: "General"
         val call = service.getNews(topic, "en")
 
         call.enqueue(object : Callback<AllNews> {
@@ -86,7 +173,7 @@ class Breezenews : AppCompatActivity() {
                     val dataList = responseBody?.data
 
                     if (dataList != null) {
-                        newsArrayList.clear() // Clear the list before adding new data
+                        newsArrayList.clear()
                         for (item in dataList) {
                             val news = News().apply {
                                 title = item.title
@@ -99,23 +186,24 @@ class Breezenews : AppCompatActivity() {
                             newsArrayList.add(news)
                         }
                         myRecyclerView.adapter?.notifyDataSetChanged()
+                        myRecyclerViewH.adapter?.notifyDataSetChanged()
+
                     } else {
                         Log.e("Error", "Data list is null")
                     }
                 } else {
                     Log.e("Error", "Response not successful: ${response.code()}")
                 }
-                Refresh.isRefreshing = false
+                refresh.isRefreshing = false
             }
 
             override fun onFailure(call: Call<AllNews>, t: Throwable) {
                 Log.e("Error", "Failed to fetch news: ${t.message}")
-
-                Refresh.isRefreshing = false
+                refresh.isRefreshing = false
             }
         })
         Handler().postDelayed({
-            Refresh.isRefreshing = false
+            refresh.isRefreshing = false
         }, 2000)
     }
 }

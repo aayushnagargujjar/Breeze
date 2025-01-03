@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,8 +25,9 @@ class Bookmark : AppCompatActivity() {
     private lateinit var myAdapterBookmark: MyAdapterBookmark
     private val db = FirebaseFirestore.getInstance()
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
+    lateinit var Homeswitch:Switch
        var refresh: SwipeRefreshLayout?=null
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,6 +39,14 @@ class Bookmark : AppCompatActivity() {
             handleBookmarkClick(position)
         }
         myRecyclerView.adapter = myAdapterBookmark
+          Homeswitch=findViewById(R.id.Homeswitch)
+        Homeswitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val intent = Intent(this, Breezenews::class.java)
+                startActivity(intent)
+            } else {
+
+            }}
 
         refresh=findViewById(R.id.swipeRefreshLayout2)
         refresh?.setOnRefreshListener {

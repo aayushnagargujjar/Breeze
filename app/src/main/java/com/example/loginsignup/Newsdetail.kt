@@ -115,7 +115,7 @@ class Newsdetail : AppCompatActivity() {
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                             val intent =
-                                                Intent(this@Newsdetail, Newsstart::class.java)
+                                                Intent(this@Newsdetail, Breezenews ::class.java)
                                             startActivity(intent)
                                         }
                                         .addOnFailureListener { e ->
@@ -159,12 +159,16 @@ class Newsdetail : AppCompatActivity() {
                     val snewsdetaildescription = newsdetaildescription.trim()
                     val snewsdetailimage = newsdetailimage.trim()
                     val snewsdetailurl = newsdetailurl.trim()
+                    val author = author.toString()
+                    val date = date.toString()
 
                     val usermap = hashMapOf(
                         "title" to snewsdetailtitle,
                         "description" to snewsdetaildescription,
                         "image" to snewsdetailimage,
-                        "url" to snewsdetailurl
+                        "url" to snewsdetailurl,
+                        "date" to date,
+                        "author" to author
                     )
                     val userEmail = FirebaseAuth.getInstance().currentUser?.email
                     if (userEmail != null) {

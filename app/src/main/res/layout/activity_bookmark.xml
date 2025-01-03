@@ -10,26 +10,29 @@
     tools:context=".Bookmark">
 
     <!-- Title -->
+
+    <!-- Divider -->
+
     <TextView
         android:id="@+id/newstitle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
         android:text="Bookmark"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center"
         android:textSize="34sp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Divider -->
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginVertical="16dp"
+        android:layout_marginVertical="36dp"
         android:background="@color/black"
         app:layout_constraintTop_toBottomOf="@id/newstitle2"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,5 +59,18 @@
             app:layoutManager="LinearLayoutManager"
             tools:listitem="@layout/recyclearviewdesign" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <Switch
+        android:id="@+id/Homeswitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Home"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/newstitle2"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
