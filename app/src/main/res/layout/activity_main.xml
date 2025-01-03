@@ -13,21 +13,23 @@
         android:id="@+id/circleImageView"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginBottom="68dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/whatsapp_image_2024_12_07_at_21_22_25_29ce7eae"
         app:civ_border_color="#E9E6E6"
         app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/gifImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintHorizontal_bias="0.393"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421"
+        app:layout_constraintVertical_bias="0.96"
         tools:ignore="MissingConstraints" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="78dp"
-        android:layout_height="66dp"
+        android:id="@+id/gifImageView"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
         android:layout_marginTop="12dp"
         android:foregroundGravity="center"
         android:src="@drawable/gif3"
@@ -36,7 +38,7 @@
         app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
+        app:layout_constraintVertical_bias="0.597" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,12 +29,7 @@
         <activity
             android:name=".Breezenews"
             android:exported="false" />
-        <activity
-            android:name=".AllNewsmain"
-            android:exported="false" />
-        <activity
-            android:name=".Sportnews"
-            android:exported="false" /> <!-- Activities declaration -->
+
         <activity
             android:name=".AllNews"
             android:exported="false"
@@ -42,8 +37,9 @@
         <activity
             android:name=".Newsstart"
             android:exported="false" />
+
         <activity
-            android:name=".welcomeactivity"
+            android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
             android:name=".Signup"

@@ -20,7 +20,7 @@ class Signup : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        // Initialize Firebase Auth
+
         auth = FirebaseAuth.getInstance()
 
         val signuplogin1 = findViewById<Button>(R.id.signuplogin)
@@ -38,7 +38,7 @@ class Signup : AppCompatActivity() {
             val name = nam.text.toString().trim()
             val pass = password.text.toString().trim()
 
-            // Ensure fields are not empty
+
             if (mail.isNotEmpty() && name.isNotEmpty() && pass.isNotEmpty()) {
                 createAccount(mail, pass, name)
             } else {
@@ -47,31 +47,31 @@ class Signup : AppCompatActivity() {
         }
     }
 
-    // Function to create user with Firebase Authentication
+
     private fun createAccount(email: String, password: String, name: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // User created successfully, now store additional user info in Realtime Database
+
                     val user = User(name, email, password)
                     storeUserInDatabase(user)
                 } else {
-                    // If sign up fails, display a message to the user
+
                     Toast.makeText(this, "Authentication Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }
 
-    // Store user data in Firebase Realtime Database
+
     private fun storeUserInDatabase(user: User) {
         database = FirebaseDatabase.getInstance().getReference("User")
 
-        // Using email as the unique identifier (replace "." with ",")
+
         val userEmail = user.mail.replace(".", ",")
         database.child(userEmail).setValue(user).addOnSuccessListener {
             Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()
 
-            // Redirect to login page
+
             val intent = Intent(this, LoginActivity1::class.java)
             startActivity(intent)
 

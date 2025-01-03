@@ -70,9 +70,9 @@ class LoginActivity1 : AppCompatActivity() {
                 val email = it.child("mail").value
                 val password = it.child("pass").value
 
-                Log.d("LoginActivity1", "Email: $email, Password: $password") // Debugging info
+                Log.d("LoginActivity1", "Email: $email, Password: $password")
 
-                val intent = Intent(this, welcomeactivity::class.java)
+                val intent = Intent(this, Breezenews::class.java)
                 intent.putExtra("name", name.toString())
                 intent.putExtra("mail", email.toString())
                 intent.putExtra("pass", password.toString())
@@ -82,7 +82,7 @@ class LoginActivity1 : AppCompatActivity() {
             }
         }.addOnFailureListener {
             Toast.makeText(this, "Failed to read data", Toast.LENGTH_SHORT).show()
-            Log.e("LoginActivity1", "Error fetching data", it) // Debugging info
+            Log.e("LoginActivity1", "Error fetching data", it)
         }
     }
 }

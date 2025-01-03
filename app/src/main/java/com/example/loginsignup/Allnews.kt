@@ -1,7 +1,7 @@
 package com.example.loginsignup
 
 data class AllNews(
-    val data: List<Data>,        // List of articles (news items)
+    val data: List<Data>,
     val hitsPerPage: Int,
     val page: Int,
     val size: Int,
