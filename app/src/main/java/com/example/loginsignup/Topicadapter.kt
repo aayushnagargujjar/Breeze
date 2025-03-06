@@ -4,7 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class TopicAdapter(private var topicList: ArrayList<Topic>, private val context: Context)
@@ -34,11 +36,26 @@ class TopicAdapter(private var topicList: ArrayList<Topic>, private val context:
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = topicList[position]
         holder.headline.text = currentItem.name
-    }
 
-    fun updateList(newList: ArrayList<Topic>) {
-        topicList = newList
-        notifyDataSetChanged()
+        if (currentItem.isSelected) {
+            holder.headline.setTextColor(ContextCompat.getColor(context, R.color.reds))
+            val animation = AnimationUtils.loadAnimation(context, R.anim.bounce)
+            holder.headline.startAnimation(animation)
+            holder.headline.postDelayed({
+                holder.headline.clearAnimation()
+            }, 3000)
+        } else {
+            holder.headline.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
+        }
+
+        holder.itemView.setOnClickListener {
+
+            topicList.forEach { it.isSelected = false }
+            currentItem.isSelected = true
+            notifyDataSetChanged()
+
+            myListener.onItemClick(position)
+        }
     }
 
     fun setItemClickListener(listener: OnItemClickListener) {

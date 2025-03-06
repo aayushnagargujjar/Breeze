@@ -7,4 +7,14 @@
     <string name="login">Login</string>
     <string name="signup">Signup</string>
     <string name="welcome">Welcome</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_web_client_id">305839343783-ak1n1qfjemdq67uc3lhfe5u0qv5uahih.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">webstring</string>
+
+
 </resources>

@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -40,7 +41,7 @@ android {
 }
 
 dependencies {
-    // AndroidX Libraries
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -50,16 +51,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
-    // Google Sign-In
     implementation("com.google.android.gms:play-services-auth:20.0.0")
     implementation("com.google.android.gms:play-services-base:18.0.1")
 
-    // Firebase Libraries
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.auth.ktx)
 
-    // CircleImageView Library (Explicitly Added Dependency)
     implementation(libs.circleimageview)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
@@ -82,10 +80,11 @@ dependencies {
     implementation(libs.android.gif.drawable) // For GIF support
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0") // SwipeRefreshLayout
     implementation("androidx.appcompat:appcompat:1.3.1") // AppCompat
-    implementation("com.google.android.material:material:1.4.0") // Material Components
+    implementation("com.google.android.material:material:1.4.0")
     testImplementation("junit:junit:4.13.2")
-    implementation("androidx.recyclerview:recyclerview:1.2.1") // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    // Android support
+    implementation(libs.kotlinx.coroutines.core)
 }
 
-// Ensure this is at the bottom of the file
 apply(plugin = "com.google.gms.google-services")

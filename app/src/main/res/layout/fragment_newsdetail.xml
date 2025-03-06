@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/colorAccent"
+    android:background="@color/lightGray"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Newsdetail">
+         >
 
     <ImageView
         android:id="@+id/newsimage"
@@ -30,6 +30,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
+            android:backgroundTint="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -50,7 +51,6 @@
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,12 +80,10 @@
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
-
                     </LinearLayout>
 
-
                     <ImageButton
-                        android:id="@+id/bookmark"
+                        android:id="@+id/like"
                         android:layout_width="50dp"
                         android:layout_height="48dp"
                         android:layout_centerInParent="true"
@@ -100,7 +98,6 @@
 
                 </LinearLayout>
 
-
                 <ScrollView
                     android:id="@+id/scrollView"
                     android:layout_width="match_parent"
@@ -111,11 +108,10 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-
                         <TextView
                             android:id="@+id/newsContent"
                             android:layout_width="match_parent"
-                            android:layout_height="220dp"
+                            android:layout_height="150dp"
                             android:text="LONDON - Cryptocurrencies 'have no intrinsic value' and people who invest in them should be prepared to lose all their money, Bank of England Governor Andrew Bailey said. Digital currencies like bitcoin, ether and even dogecoin have been on a tear this year, reminding some investors of the 2017 crypto bubble in which bitcoin blasted toward $20,000, only to sink as low as $3,122 a year later. Asked at a press conference Thursday about the rising value of cryptocurrencies, Bailey said they have no intrinsic value. That doesn't mean people don't put value on them, because they can have extrinsic value. But they have no intrinsic value."
                             android:textColor="@android:color/black"
                             android:textSize="16sp" />
@@ -126,17 +122,12 @@
                     android:id="@+id/Webviewbutton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="30dp"
                     android:backgroundTint="@android:color/black"
-                    android:text=" READ FULL NEWS"
+                    android:text=" Excited to Read Full News"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
