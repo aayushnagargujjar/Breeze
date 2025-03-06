@@ -72,11 +72,12 @@ class LoginActivity1 : AppCompatActivity() {
 
                 Log.d("LoginActivity1", "Email: $email, Password: $password")
 
-                val intent = Intent(this, Breezenews::class.java)
-                intent.putExtra("name", name.toString())
-                intent.putExtra("mail", email.toString())
-                intent.putExtra("pass", password.toString())
+                val intent = Intent(this, Home::class.java)
+
+                Toast.makeText(this, "Login successful $name", Toast.LENGTH_SHORT).show()
+
                 startActivity(intent)
+                finish()
             } else {
                 Toast.makeText(this, "User not found ", Toast.LENGTH_SHORT).show()
             }

@@ -18,7 +18,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Breezenews : Fragment(R.layout.fragment_breezenews) {
+class Breezenews1 : Fragment(R.layout.fragment_breezenews) {
     private lateinit var myRecyclerView: RecyclerView
     private lateinit var newsArrayList: ArrayList<News>
     private lateinit var myRecyclerViewH: RecyclerView
@@ -56,12 +56,8 @@ class Breezenews : Fragment(R.layout.fragment_breezenews) {
 
         topicAdapter.setItemClickListener(object : TopicAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                Handler().postDelayed({
-                    refresh.isRefreshing = true
-                }, 2000)
-                val fragment = Breezenews1().apply {
+                val fragment = Breezenews().apply {
                     arguments = Bundle().apply {
-
                         putString("topic", topicList[position].name)
                     }
                 }

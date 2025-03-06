@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main"
-    android:background="@drawable/background5"
+    android:background="@drawable/background6"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/signup_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="232dp"
         android:text="Sign up"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -95,7 +95,6 @@
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Already User Button -->
 
     <Button
         android:id="@+id/signuplogin"
@@ -126,18 +125,19 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/logo"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="26dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/whatsapp_image_2024_12_07_at_21_22_25_29ce7eae"
         app:civ_border_color="@android:color/white"
         app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signup_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.102"
+        app:layout_constraintVertical_bias="0.976"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

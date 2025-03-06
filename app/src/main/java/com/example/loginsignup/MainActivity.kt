@@ -2,6 +2,7 @@ package com.example.loginsignup
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,11 +29,13 @@ class MainActivity : AppCompatActivity() {
 
 
         val currentUser = auth.currentUser
+        val email = currentUser?.email
         if (currentUser != null) {
 
             lifecycleScope.launch {
                 delay(3000)
-                val intent = Intent(this@MainActivity, Breezenews::class.java)
+                val intent = Intent(this@MainActivity, Home::class.java)
+                Toast.makeText(this@MainActivity, "Welcome back $email", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
                 finish()
             }
@@ -40,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 delay(3000)
-                val intent = Intent(this@MainActivity, example::class.java)
+                val intent = Intent(this@MainActivity, Googleauth::class.java)
                 startActivity(intent)
                 finish()
             }

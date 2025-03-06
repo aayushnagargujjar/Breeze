@@ -2,28 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="#FCFDFF"
+    android:layout_width="wrap_content"
+
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="6dp"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="50dp"
-        android:backgroundTint="#C4CECE"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="102dp"
-        tools:ignore="MissingConstraints" >
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/topictext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:textColor="@color/blue"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="9dp"
             android:text="TextView"
+            android:textColor="@color/blue"
             android:textSize="20dp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>

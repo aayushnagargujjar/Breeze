@@ -4,19 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="@drawable/backgroundwelcome"
+    android:background="@drawable/background4"
     android:layout_height="match_parent"
     tools:context=".Webview">
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="140dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="36dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/whatsapp_image_2024_12_07_at_21_22_25_29ce7eae"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/whatsapp_image_2024_12_07_at_21_19_14_cbe4c351" />
+        tools:ignore="MissingConstraints" />
 
     <WebView
         android:id="@+id/webview"

@@ -14,48 +14,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Loginsignup"
         tools:targetApi="31">
+
         <activity
-            android:name=".Bookmark"
+            android:name=".Home"
             android:exported="false" />
-        <activity
-            android:name=".example"
-            android:exported="false" />
+
         <activity
             android:name=".Webview"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
-            android:name=".Newsdetail"
-            android:exported="false" />
-        <activity
-            android:name=".Breezenews"
-            android:exported="false" />
+            android:name=".Googleauth"
+            android:exported="false"
+             />
+
 
         <activity
             android:name=".AllNews"
             android:exported="false"
             tools:ignore="Instantiatable" />
-        <activity
-            android:name=".Newsstart"
-            android:exported="false" />
 
-        <activity
-            android:name=".WelcomeActivity"
-            android:exported="false" />
+
         <activity
             android:name=".Signup"
             android:exported="false" />
+
         <activity
             android:name=".LoginActivity1"
-            android:exported="false" /> <!-- Main activity declaration with launcher intent filter -->
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

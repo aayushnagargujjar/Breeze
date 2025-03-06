@@ -1,32 +1,39 @@
 package com.example.loginsignup
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.loginsignup.databinding.FragmentWebviewBinding
 
-class Webview : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_webview)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+class Webview : Fragment(R.layout.fragment_webview) {
+    private var _binding: FragmentWebviewBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentWebviewBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    @SuppressLint("SuspiciousIndentation")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        var url = arguments?.getString("url")
+                if (url != null) {
+                    binding.webview.loadUrl(url)
+                }
+
         }
 
-        val url = intent.getStringExtra("url")
-        if (url != null) {
-            val webView = findViewById<WebView>(R.id.webview)
-            webView.webViewClient = WebViewClient()
-            webView.loadUrl(url)
-        } else {
-            Toast.makeText(this, "No URL found", Toast.LENGTH_SHORT).show()
-        }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
